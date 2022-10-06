@@ -1,31 +1,25 @@
-package com.marco.bookstore;
+package com.marco.bookstore.service;
 
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Service;
 
 import com.marco.bookstore.domain.Categoria;
 import com.marco.bookstore.domain.Livro;
 import com.marco.bookstore.repositories.CategoriaRepository;
 import com.marco.bookstore.repositories.LivroRepository;
 
-@SpringBootApplication
-public class BookstoreApplication implements CommandLineRunner{
+@Service
+public class DBService {
 	
 	@Autowired 
 	private CategoriaRepository categoriaRepository;
 	@Autowired 
 	private LivroRepository livroRepository;
-
-	public static void main(String[] args) {
-		SpringApplication.run(BookstoreApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
+	
+	public void instanciaBaseDeDados() {
+		
 		Categoria cat1   = new Categoria(null, "Informática", "Livro de TI");
 		Categoria cat2   = new Categoria(null, "Ficção Cientifica", "Ficção Cientifica");
 		Categoria cat3   = new Categoria(null, "Biografias", "Livros de Biografias");
@@ -41,7 +35,8 @@ public class BookstoreApplication implements CommandLineRunner{
 		
 		this.categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		this.livroRepository.saveAll(Arrays.asList(l1, l2, l3, l4, l5));
-				
+		
+		System.out.println("TESTEEEEEEEEE2"); 
 	}
 
 }
